@@ -1,0 +1,17 @@
+// The qLTS Spec
+digraph {
+	0 -> 1 [label=tau]
+	1 -> 2 [label=tau]
+	2 -> 3 [label=tau]
+	3 -> 4 [label=tau]
+	4 -> 5 [label=tau]
+	5 -> 6 [label=tau]
+	6 -> 7 [label=tau]
+	7 -> 8 [label=tau]
+	8 -> 9 [label=tau]
+	9 -> 10 [label=tau]
+	10 -> 11 [label=tau]
+	11 -> 12 [label=tau]
+	12 -> 13 [label="p=1.0"]
+	13 -> 14 [label="d!5"]
+}

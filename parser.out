@@ -1,0 +1,457 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    CInput
+    CMP
+    COMMA
+    COutput
+    Choice
+    DIVIDE
+    Define
+    Forbidden
+    GE
+    GT
+    IF
+    Kraus
+    LBRACE
+    LBRACKET
+    LE
+    LPAREN
+    LT
+    Measurement
+    NOT
+    NULL
+    Name
+    OR
+    Parallel
+    Prefix
+    Process
+    Pstr
+    QInput
+    QOutput
+    RBRACE
+    RBRACKET
+    RPAREN
+    Ran
+    Relabel
+    Rem
+    Silent
+    Sub
+    Superoperator
+    THEN
+
+Grammar
+
+Rule 0     S' -> init
+Rule 1     init -> NUMBER_SIGN clause NUMBER_SIGN
+Rule 2     clause -> clause Next clause
+Rule 3     clause -> cregister
+Rule 4     clause -> qregister
+Rule 5     clause -> cregister EQUAL assignment
+Rule 6     clause -> qregister EQUAL expression
+Rule 7     expression -> expression PLUS expression
+Rule 8     expression -> expression MINUS expression
+Rule 9     expression -> MINUS expression
+Rule 10    expression -> number TIMES register
+Rule 11    expression -> register
+Rule 12    assignment -> Assignment
+Rule 13    register -> Register
+Rule 14    cregister -> CRegister
+Rule 15    qregister -> QRegister
+Rule 16    number -> NUMBER
+
+Terminals, with rules where they appear
+
+AND                  : 
+Assignment           : 12
+CInput               : 
+CMP                  : 
+COMMA                : 
+COutput              : 
+CRegister            : 14
+Choice               : 
+DIVIDE               : 
+Define               : 
+EQUAL                : 5 6
+Forbidden            : 
+GE                   : 
+GT                   : 
+IF                   : 
+Kraus                : 
+LBRACE               : 
+LBRACKET             : 
+LE                   : 
+LPAREN               : 
+LT                   : 
+MINUS                : 8 9
+Measurement          : 
+NOT                  : 
+NULL                 : 
+NUMBER               : 16
+NUMBER_SIGN          : 1 1
+Name                 : 
+Next                 : 2
+OR                   : 
+PLUS                 : 7
+Parallel             : 
+Prefix               : 
+Process              : 
+Pstr                 : 
+QInput               : 
+QOutput              : 
+QRegister            : 15
+RBRACE               : 
+RBRACKET             : 
+RPAREN               : 
+Ran                  : 
+Register             : 13
+Relabel              : 
+Rem                  : 
+Silent               : 
+Sub                  : 
+Superoperator        : 
+THEN                 : 
+TIMES                : 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 5
+clause               : 1 2 2
+cregister            : 3 5
+expression           : 6 7 7 8 8 9
+init                 : 0
+number               : 10
+qregister            : 4 6
+register             : 10 11
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . init
+    (1) init -> . NUMBER_SIGN clause NUMBER_SIGN
+
+    NUMBER_SIGN     shift and go to state 2
+
+    init                           shift and go to state 1
+
+state 1
+
+    (0) S' -> init .
+
+
+
+state 2
+
+    (1) init -> NUMBER_SIGN . clause NUMBER_SIGN
+    (2) clause -> . clause Next clause
+    (3) clause -> . cregister
+    (4) clause -> . qregister
+    (5) clause -> . cregister EQUAL assignment
+    (6) clause -> . qregister EQUAL expression
+    (14) cregister -> . CRegister
+    (15) qregister -> . QRegister
+
+    CRegister       shift and go to state 6
+    QRegister       shift and go to state 7
+
+    clause                         shift and go to state 3
+    cregister                      shift and go to state 4
+    qregister                      shift and go to state 5
+
+state 3
+
+    (1) init -> NUMBER_SIGN clause . NUMBER_SIGN
+    (2) clause -> clause . Next clause
+
+    NUMBER_SIGN     shift and go to state 8
+    Next            shift and go to state 9
+
+
+state 4
+
+    (3) clause -> cregister .
+    (5) clause -> cregister . EQUAL assignment
+
+    NUMBER_SIGN     reduce using rule 3 (clause -> cregister .)
+    Next            reduce using rule 3 (clause -> cregister .)
+    EQUAL           shift and go to state 10
+
+
+state 5
+
+    (4) clause -> qregister .
+    (6) clause -> qregister . EQUAL expression
+
+    NUMBER_SIGN     reduce using rule 4 (clause -> qregister .)
+    Next            reduce using rule 4 (clause -> qregister .)
+    EQUAL           shift and go to state 11
+
+
+state 6
+
+    (14) cregister -> CRegister .
+
+    EQUAL           reduce using rule 14 (cregister -> CRegister .)
+    NUMBER_SIGN     reduce using rule 14 (cregister -> CRegister .)
+    Next            reduce using rule 14 (cregister -> CRegister .)
+
+
+state 7
+
+    (15) qregister -> QRegister .
+
+    EQUAL           reduce using rule 15 (qregister -> QRegister .)
+    NUMBER_SIGN     reduce using rule 15 (qregister -> QRegister .)
+    Next            reduce using rule 15 (qregister -> QRegister .)
+
+
+state 8
+
+    (1) init -> NUMBER_SIGN clause NUMBER_SIGN .
+
+    $end            reduce using rule 1 (init -> NUMBER_SIGN clause NUMBER_SIGN .)
+
+
+state 9
+
+    (2) clause -> clause Next . clause
+    (2) clause -> . clause Next clause
+    (3) clause -> . cregister
+    (4) clause -> . qregister
+    (5) clause -> . cregister EQUAL assignment
+    (6) clause -> . qregister EQUAL expression
+    (14) cregister -> . CRegister
+    (15) qregister -> . QRegister
+
+    CRegister       shift and go to state 6
+    QRegister       shift and go to state 7
+
+    clause                         shift and go to state 12
+    cregister                      shift and go to state 4
+    qregister                      shift and go to state 5
+
+state 10
+
+    (5) clause -> cregister EQUAL . assignment
+    (12) assignment -> . Assignment
+
+    Assignment      shift and go to state 14
+
+    assignment                     shift and go to state 13
+
+state 11
+
+    (6) clause -> qregister EQUAL . expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . MINUS expression
+    (10) expression -> . number TIMES register
+    (11) expression -> . register
+    (16) number -> . NUMBER
+    (13) register -> . Register
+
+    MINUS           shift and go to state 16
+    NUMBER          shift and go to state 19
+    Register        shift and go to state 20
+
+    expression                     shift and go to state 15
+    number                         shift and go to state 17
+    register                       shift and go to state 18
+
+state 12
+
+    (2) clause -> clause Next clause .
+    (2) clause -> clause . Next clause
+
+    NUMBER_SIGN     reduce using rule 2 (clause -> clause Next clause .)
+    Next            reduce using rule 2 (clause -> clause Next clause .)
+
+  ! Next            [ shift and go to state 9 ]
+
+
+state 13
+
+    (5) clause -> cregister EQUAL assignment .
+
+    NUMBER_SIGN     reduce using rule 5 (clause -> cregister EQUAL assignment .)
+    Next            reduce using rule 5 (clause -> cregister EQUAL assignment .)
+
+
+state 14
+
+    (12) assignment -> Assignment .
+
+    NUMBER_SIGN     reduce using rule 12 (assignment -> Assignment .)
+    Next            reduce using rule 12 (assignment -> Assignment .)
+
+
+state 15
+
+    (6) clause -> qregister EQUAL expression .
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    NUMBER_SIGN     reduce using rule 6 (clause -> qregister EQUAL expression .)
+    Next            reduce using rule 6 (clause -> qregister EQUAL expression .)
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+
+
+state 16
+
+    (9) expression -> MINUS . expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . MINUS expression
+    (10) expression -> . number TIMES register
+    (11) expression -> . register
+    (16) number -> . NUMBER
+    (13) register -> . Register
+
+    MINUS           shift and go to state 16
+    NUMBER          shift and go to state 19
+    Register        shift and go to state 20
+
+    expression                     shift and go to state 23
+    number                         shift and go to state 17
+    register                       shift and go to state 18
+
+state 17
+
+    (10) expression -> number . TIMES register
+
+    TIMES           shift and go to state 24
+
+
+state 18
+
+    (11) expression -> register .
+
+    PLUS            reduce using rule 11 (expression -> register .)
+    MINUS           reduce using rule 11 (expression -> register .)
+    NUMBER_SIGN     reduce using rule 11 (expression -> register .)
+    Next            reduce using rule 11 (expression -> register .)
+
+
+state 19
+
+    (16) number -> NUMBER .
+
+    TIMES           reduce using rule 16 (number -> NUMBER .)
+
+
+state 20
+
+    (13) register -> Register .
+
+    PLUS            reduce using rule 13 (register -> Register .)
+    MINUS           reduce using rule 13 (register -> Register .)
+    NUMBER_SIGN     reduce using rule 13 (register -> Register .)
+    Next            reduce using rule 13 (register -> Register .)
+
+
+state 21
+
+    (7) expression -> expression PLUS . expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . MINUS expression
+    (10) expression -> . number TIMES register
+    (11) expression -> . register
+    (16) number -> . NUMBER
+    (13) register -> . Register
+
+    MINUS           shift and go to state 16
+    NUMBER          shift and go to state 19
+    Register        shift and go to state 20
+
+    expression                     shift and go to state 25
+    number                         shift and go to state 17
+    register                       shift and go to state 18
+
+state 22
+
+    (8) expression -> expression MINUS . expression
+    (7) expression -> . expression PLUS expression
+    (8) expression -> . expression MINUS expression
+    (9) expression -> . MINUS expression
+    (10) expression -> . number TIMES register
+    (11) expression -> . register
+    (16) number -> . NUMBER
+    (13) register -> . Register
+
+    MINUS           shift and go to state 16
+    NUMBER          shift and go to state 19
+    Register        shift and go to state 20
+
+    expression                     shift and go to state 26
+    number                         shift and go to state 17
+    register                       shift and go to state 18
+
+state 23
+
+    (9) expression -> MINUS expression .
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    PLUS            reduce using rule 9 (expression -> MINUS expression .)
+    MINUS           reduce using rule 9 (expression -> MINUS expression .)
+    NUMBER_SIGN     reduce using rule 9 (expression -> MINUS expression .)
+    Next            reduce using rule 9 (expression -> MINUS expression .)
+
+  ! PLUS            [ shift and go to state 21 ]
+  ! MINUS           [ shift and go to state 22 ]
+
+
+state 24
+
+    (10) expression -> number TIMES . register
+    (13) register -> . Register
+
+    Register        shift and go to state 20
+
+    register                       shift and go to state 27
+
+state 25
+
+    (7) expression -> expression PLUS expression .
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    PLUS            reduce using rule 7 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 7 (expression -> expression PLUS expression .)
+    NUMBER_SIGN     reduce using rule 7 (expression -> expression PLUS expression .)
+    Next            reduce using rule 7 (expression -> expression PLUS expression .)
+
+  ! PLUS            [ shift and go to state 21 ]
+  ! MINUS           [ shift and go to state 22 ]
+
+
+state 26
+
+    (8) expression -> expression MINUS expression .
+    (7) expression -> expression . PLUS expression
+    (8) expression -> expression . MINUS expression
+
+    PLUS            reduce using rule 8 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 8 (expression -> expression MINUS expression .)
+    NUMBER_SIGN     reduce using rule 8 (expression -> expression MINUS expression .)
+    Next            reduce using rule 8 (expression -> expression MINUS expression .)
+
+  ! PLUS            [ shift and go to state 21 ]
+  ! MINUS           [ shift and go to state 22 ]
+
+
+state 27
+
+    (10) expression -> number TIMES register .
+
+    PLUS            reduce using rule 10 (expression -> number TIMES register .)
+    MINUS           reduce using rule 10 (expression -> number TIMES register .)
+    NUMBER_SIGN     reduce using rule 10 (expression -> number TIMES register .)
+    Next            reduce using rule 10 (expression -> number TIMES register .)
+

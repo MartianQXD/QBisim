@@ -1,0 +1,10 @@
+// The qLTS Q
+digraph {
+	0 -> 1 [label=tau]
+	1 -> 2 [label="p1=0.5"]
+	2 -> 3 [label=tau]
+	3 -> 4 [label="p=1.0"]
+	1 -> 5 [label="p2=0.5"]
+	5 -> 6 [label=tau]
+	6 -> 7 [label="p=1.0"]
+}

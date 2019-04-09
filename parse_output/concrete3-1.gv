@@ -1,0 +1,8 @@
+// The qLTS Sdc
+digraph {
+	0 -> 1 [label="c?x"]
+	1 -> 2 [label=tau]
+	2 -> 3 [label="p=1.0"]
+	3 -> 4 [label=tau]
+	4 -> 5 [label=tau]
+}

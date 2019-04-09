@@ -1,0 +1,18 @@
+#
+{x} = {5};
+[q1,q2] = [00]
+#
+Alice(q1,q2) def ca.?q1.(if x=0 then sigma0[q1].e.!q1.nil + if x=1 then sigma1[q1].e.!q1.nil + if x=2 then sigma2[q1].e.!q1.nil + if x=3 then sigma3[q1].e.!q1.nil + if not (x=0 or x=1 or x=2 or x=3) then cc!msg.nil);
+Bob(x,q1,q2) def cb.?q2.(e.?q1.CN[q1,q2].H[q1].M[q1,q2;x].d!x.nil + cc?msg.tau.tau.tau.tau.tau.tau.tau.tau.d!x.nil);
+EPR(q1,q2) def SetPsi[q1,q2].cb.!q2.ca.!q1.nil;
+Sdc(x,q1,q2) def (Alice||Bob||EPR)\{ca,cb,cc,e}
+{
+	sigma0=[|0><0|+|1><1|];
+	sigma1=[|0><1|+|1><0|];
+	sigma2=[|0><0|-|1><1|];
+	sigma3=[-|0><1|+|1><0|];
+	CN=[|00><00|+|01><01|+|10><11|+|11><10|];
+	H=[0.707*|0><0|+0.707*|0><1|+0.707*|1><0|+0.707*|1><1|];
+	SetPsi=[0.707*|00><00|+0.707*|11><00|,0.707*|00><01|+0.707*|11><01|,0.707*|00><10|+0.707*|11><10|,0.707*|00><11|+0.707*|11><11|];
+	M=[|00><00|,|01><01|,|10><10|,|11><11|]
+}

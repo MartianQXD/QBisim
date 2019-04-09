@@ -1,0 +1,49 @@
+#
+{xKa,xKb,xBa,xBb,xKe,xBe,xKa1,xKb1,xKa2,xKb2,x,x1,y1,z1};
+[q1,q2,q3] = [000]
+#
+Alice def Set1[q1].M[q1;xBa].Set10[q1].Set1[q1].M[q1;xKa].Set10[q1].
+	(if xKa=0 then Set10[q1].
+		(if xBa=0 then I[q1].A2E.!q1.b2a?xBb.a2b!xBa.keya!cmp(xKa,xBa,xBb).nil 
+		+ if xBa=1 then H[q1].A2E.!q1.b2a?xBb.a2b!xBa.keya!cmp(xKa,xBa,xBb).nil) 
+	+ if xKa=1 then Set11[q1].
+		(if xBa=0 then I[q1].A2E.!q1.b2a?xBb.a2b!xBa.keya!cmp(xKa,xBa,xBb).nil 
+		+ if xBa=1 then H[q1].A2E.!q1.b2a?xBb.a2b!xBa.keya!cmp(xKa,xBa,xBb).nil)
+	);
+Bob def E2B.?q1.Set1[q2].M[q2;xBb].Set10[q2].
+	(if xBb=0 then M[q1;xKb].b2a!xBb.a2b?xBa.keyb!cmp(xKb,xBa,xBb).nil 
+	+ if xBb=1 then M2[q1;xKb].b2a!xBb.a2b?xBa.keyb!cmp(xKb,xBa,xBb).nil);
+Alice1 def keya?xKa1.Pstr[q1;x].a2b!x.a2b!Sub(xKa1,x).b2a?xKb2.
+	(if Sub(xKa1,x)=xKb2 then key1a!Rem(xKa1,x).nil 
+	+ if (not Sub(xKa1,x)=xKb2) then alarma!0.nil);
+Bob1 def keyb?xKb1.a2b?x.a2b?xKa2.b2a!Sub(xKb1,x).
+	(if Sub(xKb1,x)=xKa2 then key1b!Rem(xKb1,x).nil 
+	+ if (not Sub(xKb1,x)=xKa2) then alarmb!0.nil);
+Eve def A2E.?q1.Set1[q3].M[q3;xBe].Set10[q3].
+	(if xBe=0 then M[q1;xKe].
+		(if xKe=0 then Set10[q1].
+			(if xBe=0 then I[q1].E2B.!q1.key1e!xKe.nil + if xBe=1 then H[q1].E2B.!q1.key1e!xKe.nil)
+		+ if xKe=1 then Set11[q1].
+			(if xBe=0 then I[q1].E2B.!q1.key1e!xKe.nil + if xBe=1 then H[q1].E2B.!q1.key1e!xKe.nil)
+		)
+	+ if xBe=1 then M2[q1;xKe].
+		(if xKe=0 then Set10[q1].
+			(if xBe=0 then I[q1].E2B.!q1.key1e!xKe.nil + if xBe=1 then H[q1].E2B.!q1.key1e!xKe.nil)
+		+ if xKe=1 then Set11[q1].
+			(if xBe=0 then I[q1].E2B.!q1.key1e!xKe.nil + if xBe=1 then H[q1].E2B.!q1.key1e!xKe.nil)
+		)
+	);
+Test def key1a?x1.key1b?y1.key1e?z1.
+	(if not x1=y1 then fail!0.nil + if x1=y1 then keye!z1.skey!x1.nil);
+BB84 def (Alice||Bob||Alice1||Bob1||Eve||Test)\{a2b,b2a,keya,keyb,A2E,E2B,alarma,alarmb}
+{
+	Set2=[0.5*|00><00|+0.5*|00><01|+0.5*|00><10|+0.5*|00><11|,0.5*|01><00|+0.5*|01><01|+0.5*|01><10|+0.5*|01><11|,0.5*|10><00|+0.5*|10><01|+0.5*|10><10|+0.5*|10><11|,0.5*|11><00|+0.5*|11><01|+0.5*|11><10|+0.5*|11><11|];
+	Set1=[0.707*|0><0|+0.707*|1><0|,0.707*|0><1|+0.707*|1><1|];
+	Set20=[|00><00|,|00><01|,|00><10|,|00><11|];
+	Set10=[|0><0|,|0><1|];
+	Set11=[|1><0|,|1><1|];
+	I=[|0><0|+|1><1|];
+	H=[0.707*|0><0|+0.707*|0><1|+0.707*|1><0|-0.707*|1><1|];
+	M=[|0><0|,|1><1|];
+	M2=[0.5*|0><0|+0.5*|0><1|+0.5*|1><0|+0.5*|1><1|,0.5*|0><0|-0.5*|0><1|-0.5*|1><0|+0.5*|1><1|]
+}

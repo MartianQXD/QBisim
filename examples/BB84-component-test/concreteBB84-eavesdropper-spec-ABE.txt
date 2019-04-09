@@ -1,0 +1,10 @@
+#
+{xKa,xKb,xBa,xBb,xKab,xKba,xKe,xBe,x};
+[q1,q2,q3] = [000]
+#
+Spec def Set1[q1].M[q1;xBa].Set10[q1].Set1[q1].M[q1;xKa].Set10[q1].tau.tau.tau.tau.tau.Set1[q3].M[q3;xBe].Set10[q3].tau.tau.tau.tau.tau.Ran[xBa,xBe,xKa,xKe].Set1[q2].M[q2;xBb].Set10[q2].Ran[xBe,xBb,xKe,xKb].tau.tau.keya!cmp(xKa,xBa,xBb).keyb!cmp(xKb,xBa,xBb).key1e!xKe.nil
+{
+	Set1=[0.707*|0><0|+0.707*|1><0|,0.707*|0><1|+0.707*|1><1|];
+	Set10=[|0><0|,|0><1|];
+	M=[|0><0|,|1><1|]
+}

@@ -1,0 +1,7 @@
+#
+[q,q1,q2] = [100]
+#
+Spec(q,q1,q2) def tau.tau.tau.tau.tau.tau.tau.tau.tau.tau.tau.tau.tau.SWAP[q,q1,q2].nil
+{
+	SWAP=[|000><000|+|001><100|+|010><010|+|011><110|+|100><001|+|101><101|+|110><011|+|111><111|]
+}

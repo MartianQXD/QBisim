@@ -1,0 +1,7 @@
+// The qLTS P
+digraph {
+	0 -> 1 [label="True,tau"]
+	1 -> 2 [label="True,Set0[q]"]
+	2 -> 3 [label="True,tau"]
+	3 -> 4 [label="True,I[q]"]
+}

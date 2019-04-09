@@ -1,0 +1,11 @@
+#
+{x} = {5};
+[q1,q2] = [00]
+#
+Spec(q1,q2) def c?x.tau.tau.tau.tau.tau.tau.tau.tau.tau.tau.tau.(if x=0 then Set0[q1,q2].d!x.nil + if x=1 then Set1[q1,q2].d!x.nil + if x=2 then Set2[q1,q2].d!x.nil + if x=3 then Set3[q1,q2].d!x.nil)
+{
+	Set0=[|00><00|,|00><01|,|00><10|,|00><11|];
+	Set1=[|01><00|,|01><01|,|01><10|,|01><11|];
+	Set2=[|10><00|,|10><01|,|10><10|,|10><11|];
+	Set3=[|11><00|,|11><01|,|11><10|,|11><11|]
+}

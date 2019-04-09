@@ -1,0 +1,15 @@
+#
+{xKa,xKb,xBa,xBb,xKe,xBe,xKab,xKba,x} = {1,0,0,0,0,0};
+[q1,q2,q3] = [000]
+#
+Spec def Pstr[q1;x].tau.tau.tau.
+	(if cmp(xKa,xBa,xBb,xKab)=cmp(xKb,xBa,xBb,xKba) then tau.tau.tau.keye!xKe.skey!Rem(xKab,x).nil
+	+ if not cmp(xKa,xBa,xBb,xKab)=cmp(xKb,xBa,xBb,xKba) then 
+	(if not Sub(xKab,x)=Sub(xKba,x) then tau.tau.tau.alarm!0.nil
+	+ if Sub(xKab,x)=Sub(xKba,x) then tau.tau.tau.fail!0.nil)
+	)
+{
+	Set1=[0.707*|0><0|+0.707*|1><0|,0.707*|0><1|+0.707*|1><1|];
+	Set10=[|0><0|,|0><1|];
+	M=[|0><0|,|1><1|]
+}

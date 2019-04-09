@@ -1,0 +1,17 @@
+#
+{xKa,xKb,xBa,xBb,xKab,xKba,xKe,xBe,x};
+[q1,q2,q3] = [000]
+#
+Outa def alarma!0.nil;
+Outb def alarmb!0.nil;
+Spec def Set1[q1].M[q1;xBa].Set10[q1].Set1[q1].M[q1;xKa].Set10[q1].tau.tau.tau.tau.tau.Set1[q3].M[q3;xBe].Set10[q3].Ran[xBa,xBe,xKa,xKe].tau.tau.tau.tau.tau.Set1[q2].M[q2;xBb].Set10[q2].tau.Ran[xBe,xBb,xKe,xKb].tau.tau.tau.tau.Pstr[q1;x].tau.tau.
+	(if cmp(xKa,xBa,xBb,xKab)=cmp(xKb,xBa,xBb,xKba) then tau.tau.tau.keye!xKe.skey!Rem(xKab,x).nil
+	+ if not cmp(xKa,xBa,xBb,xKab)=cmp(xKb,xBa,xBb,xKba) then 
+	(if not Sub(xKab,x)=Sub(xKba,x) then (Outa||Outb)
+	+ if Sub(xKab,x)=Sub(xKba,x) then tau.tau.tau.fail!0.nil)
+	)
+{
+	Set1=[0.707*|0><0|+0.707*|1><0|,0.707*|0><1|+0.707*|1><1|];
+	Set10=[|0><0|,|0><1|];
+	M=[|0><0|,|1><1|]
+}
