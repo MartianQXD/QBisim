@@ -1,5 +1,5 @@
 #
-{x} = {2};
+{x} = {5};
 [q1,q2] = [00]
 #
 Alice(q1,q2) def ca.?q1.(if x=0 then sigma0[q1].e.!q1.nil + if x=1 then sigma1[q1].e.!q1.nil + if x=2 then sigma2[q1].e.!q1.nil + if x=3 then sigma3[q1].e.!q1.nil + if not (x=0 or x=1 or x=2 or x=3) then cc!msg.nil);

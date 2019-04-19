@@ -739,12 +739,12 @@ def constr_eval(tree):
 		regx_index = 0
 		for i in range(len(process)):
 			if process[i] == ',':
-				new_val = process[word_begin:i]
+				new_val = int(process[word_begin:i])
 				evaluation.append(new_val)
 				regx_val.update({regx[regx_index] : new_val})
 				regx_index = regx_index+1
 				word_begin = i+1
-		new_val = process[word_begin:word_end]
+		new_val = int(process[word_begin:word_end])
 		if new_val is not None:
 			evaluation.append(new_val)
 			regx_val.update({regx[regx_index] : new_val})

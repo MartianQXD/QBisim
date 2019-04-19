@@ -7,6 +7,7 @@ import pprint
 import numpy as np
 import sympy as sp
 import gc
+import time
 
 def reset_qlts():
 	qlts.op = {}
@@ -44,7 +45,7 @@ try:
 	mat_size = qlts.mat_size
 	state_1 = qlts.state
 	statement_1 = qlts.statement
-	print("First qLTS has been built, please input the next one.")
+	# print("First qLTS has been built, please input the next one.")
 except EOFError:
 	exit()
 #Reset all of the global variable
@@ -70,22 +71,32 @@ try:
 #		print("Warning: Registers are of different sizes.")
 	state_2 = qlts.state
 	statement_2  = qlts.statement
-	print("Second qLTS has been built, then check the bisimulation.")
+	# print("Second qLTS has been built, then check the bisimulation.")
 except EOFError:
 	exit()
 
+timer = 0
+
 def Bisim(t,u):
-	print("//Check Bisimulation\nStart: ")
+	global timer
+	timer = time.time()
+	# print("//Check Bisimulation\nStart: ")
 	res = Match(t,u,[])
-	print("//Check Bisimulation\nResult: ",res[0])
+	# print("//Check Bisimulation\nResult: ",res[0])
 	if len(res[1]) > 10:
 		print("NonBisim: ",len(res[1]))
 	else:
 		print("NonBisim: ",res[1])
+	if len(res[2]) > 10:
+		print("Bisim: ",len(res[2]))
+	else:
+		print("Bisim: ",res[2])
 	if res[0]==False:
 		print("Not Bisimilar")
 	else:
 		print("Bisimilar")
+	timer = time.time() - timer
+	print(timer)
 	return res
 
 def Match(t,u,W):
@@ -93,21 +104,24 @@ def Match(t,u,W):
 	#print(t,u)
 	mgb = True
 	N = []
+	B = []
 	delta = {}
 	theta = {}
 	if W.__contains__((t,u)):
 		mgb = True
 		N = []
+		B.append((t,u))
 	else:
 		gammas = get_Act(t,u)
 		#print("Gamma : ",gammas)
 		if gammas is None:
 			N.append((t,u))
-			return (ff,N)
+			return (ff,N,B)
 		for gamma in gammas:
 			match_action_res = MatchAction(gamma,t,u,W)
 			mgb = And(mgb,match_action_res[0])
 			N = list(set(N+match_action_res[1]))
+			B = list(set(B+match_action_res[2]))
 	# Theta result
 	# Quantum variable equality qv(t)==qv(u)
 	b_qveq = (set(regq_1).issubset(set(regq_2)) or set(regq_2).issubset(set(regq_1)))
@@ -124,20 +138,29 @@ def Match(t,u,W):
 	# NonBisim result
 	if mgb==False:
 		N.append((t,u))
-	print("Match ",(t,u)," result")
-	print("======================= (1)boolean: ",mgb)
-	if len(N) < 10:
-		print("======================= (2)Table: ",N)
+	elif mgb==True:
+		B.append((t,u))
 	else:
-		print("======================= (2)Table: ",len(N)," items")
-	return (mgb,N)
+		print("Problem exists on the boolean value theta.")
+	# print("Match ",(t,u)," result")
+	# print("======================= (1)boolean: ",mgb)
+	# if len(N) < 10:
+	# 	print("======================= (2)Table: ",N)
+	# else:
+	# 	print("======================= (2)Table: ",len(N)," items")
+	# if len(B) < 10:
+	# 	print("======================= (2)Table: ",B)
+	# else:
+	# 	print("======================= (2)Table: ",len(B)," items")
+	return (mgb,N,B)
 
 def MatchAction(gamma,t,u,W):
 	#print("Match Action.")
-	print(gamma,t,u)
+	# print(gamma,t,u)
 	b_list = []
 	b_list_ = []
 	N = []
+	B = []
 	b_conjunction = None
 	if gamma=="silent" or gamma=="measurement":
 		trans_t_list = [transition for transition in transitions_1 if transition[0]==t and (transition[3]=='silent' or transition[3]=='measurement')]
@@ -153,7 +176,8 @@ def MatchAction(gamma,t,u,W):
 				matchdistribution_res = ()
 				matchdistribution_res = MatchDistribution(trans_t[1],trans_u[1],W)
 				mgb[i,j] = matchdistribution_res[0]
-				N = list(set(N)|set(matchdistribution_res[1]))
+				N = list(set(N+matchdistribution_res[1]))
+				B = list(set(B+matchdistribution_res[2]))
 		for i in range(len(trans_t_list)):
 			b_disjunction = None
 			for j in range(len(trans_u_list)):
@@ -197,7 +221,8 @@ def MatchAction(gamma,t,u,W):
 				match_res = ()
 				match_res = Match(trans_t[1],trans_u[1],W)
 				mgb[i,j] = match_res[0]
-				N = list(set(N)|set(match_res[1]))
+				N = list(set(N+match_res[1]))
+				B = list(set(B+match_res[2]))
 				if gamma=="!" or gamma==".!":
 					#动作为Output时的特殊情况，保存输出变量
 					e_1 = ''
@@ -228,23 +253,28 @@ def MatchAction(gamma,t,u,W):
 				b_conjunction = b_disjunction
 			else:
 				b_conjunction = And(b_conjunction,b_disjunction)
-	print(b_conjunction)
+	# print(b_conjunction)
 	if b_conjunction==None:
 		print("Model Error, no next transition in the qLTS.")
 		return
 	b_res = simplify(b_conjunction)
-	print("Match ",(t,u)," action result")
-	print("============================= (1)boolean: ",b_res)
-	if len(N) < 10:
-		print("============================= (2)Table: ",N)
-	else:
-		print("============================= (2)Table: ",len(N)," items")
-	return (b_res,N)
+	# print("Match ",(t,u)," action result")
+	# print("============================= (1)boolean: ",b_res)
+	# if len(N) < 10:
+	# 	print("============================= (2)Table N: ",N)
+	# else:
+	# 	print("============================= (2)Table N: ",len(N)," items")
+	# if len(B) < 10:
+	# 	print("============================= (2)Table B: ",B)
+	# else:
+	# 	print("============================= (2)Table B: ",len(B)," items")
+	return (b_res,N,B)
 
 def MatchDistribution(t,u,W):
-	print("Match Distribution.")
-	print(t,u)
+	# print("Match Distribution.")
+	# print(t,u)
 	N = []
+	B = []
 	mgb = None
 	#构造分布
 	delta = {}
@@ -268,12 +298,13 @@ def MatchDistribution(t,u,W):
 				match_res = Match(t_,u_,W)
 				candidate.append((t_,u_))
 				#print(match_res,T_union)
-				print("Distribution mgb: ",match_res[0])
+				# print("Distribution mgb: ",match_res[0])
 				if mgb is None:
 					mgb = match_res[0]
 				else:
 					mgb = Or(mgb,match_res[0])
-				N = list(set(N)|set(match_res[1]))
+				N = list(set(N+match_res[1]))
+				B = list(set(B+match_res[2]))
 	# Prepare the generation of equivalence relations, mark the elements in N with its owner qLTS
 	T_disjoint_union = []
 	for t_map in candidate:
@@ -285,24 +316,28 @@ def MatchDistribution(t,u,W):
 	check_result = Check(distr_elements,T_disjoint_union,delta,theta,R)
 	b_res = simplify(And(mgb,check_result))
 	#b_res = check_result
-	print("Match ",(t,u)," distribution result")
-	print("============================= (1)boolean: ",b_res)
-	if len(N) < 10:
-		print("============================= (2)Table: ",N)
-	else:
-		print("============================= (2)Table: ",len(N)," items")
-	return (b_res,N)
+	# print("Match ",(t,u)," distribution result")
+	# print("============================= (1)boolean: ",b_res)
+	# if len(N) < 10:
+	# 	print("============================= (2)Table N: ",N)
+	# else:
+	# 	print("============================= (2)Table N: ",len(N)," items")
+	# if len(B) < 10:
+	# 	print("============================= (2)Table B: ",B)
+	# else:
+	# 	print("============================= (2)Table B: ",len(B)," items")
+	return (b_res,N,B)
 
 def Check(distr_elements,T_disjoint_union,delta,theta,R):
-	print("Check.")
-	print("Distribution elements: ",distr_elements)
+	# print("Check.")
+	# print("Distribution elements: ",distr_elements)
 	#print("Disjoint Unions: ",T_disjoint_union)
 	#pprint.pprint(delta)
 	#pprint.pprint(theta)
 	b = True
 	equivalence_classes = []
 	if len(T_disjoint_union) is 0:
-		print("Warning: No pair in distribution matched.")
+		# print("Warning: No pair in distribution matched.")
 		b = False
 	#Compute equivalence class
 	for s in distr_elements:
@@ -313,10 +348,10 @@ def Check(distr_elements,T_disjoint_union,delta,theta,R):
 				equivalence_class.add(relation[1])
 		if not (equivalence_classes.__contains__(equivalence_class) or equivalence_class==set()):
 			equivalence_classes.append(equivalence_class)
-	if len(equivalence_classes) < 5:
-		print("Equivalence classes: ",equivalence_classes)
-	else:
-		print("Equivalence classes: ",len(equivalence_classes)," items")
+	# if len(equivalence_classes) < 5:
+	# 	print("Equivalence classes: ",equivalence_classes)
+	# else:
+	# 	print("Equivalence classes: ",len(equivalence_classes)," items")
 	for equivalence_class in equivalence_classes:
 		#pprint.pprint(equivalence_class)
 		# Check equivalence class
@@ -330,10 +365,12 @@ def Check(distr_elements,T_disjoint_union,delta,theta,R):
 			if ele[1] == 'u':
 				if theta.__contains__(ele):
 					m_u = m_u + theta[ele]
+		m_t = np.around(m_t,decimals=2)
+		m_u = np.around(m_u,decimals=2)
 		if not m_t == m_u:
 			b = False
-		print("======",m_t,m_u)
-	print("Check result: ",b)
+	# 	print("======",m_t,m_u)
+	# print("Check result: ",b)
 	return b
 
 # Compute the equivalence relation
@@ -354,12 +391,15 @@ def equivalence_relation(T_union):
     return R
 
 def get_Act(t,u):
+	global timer
 	gammas = set()
 	t_count = [transition for transition in transitions_1 if transition[0]==t]
 	u_count = [transition for transition in transitions_2 if transition[0]==u]
 	#print(t_count,u_count)
 	if (len(t_count)==0 and len(u_count)!=0) or (len(t_count)!=0 and len(u_count)==0):
 		print("Different Depth. Not Bisimilar.")
+		timer = time.time() - timer
+		print(timer)
 		exit(0)
 	for transition in transitions_1:
 		for another_transition in transitions_2:
@@ -378,7 +418,7 @@ def get_Act(t,u):
 				if (transition[3]=='matched' and another_transition[3]=='silent') or (another_transition[3]=='matched' and transition[3]=='silent'):
 					gammas.add('matched')
 	if (len(t_count)>0  and len(u_count)>0 and len(gammas)==0):
-		print("No pair of actions in the next step are the same. Not Bisimilar.")
+		# print("No pair of actions in the next step are the same. Not Bisimilar.")
 		return None
 	return gammas
 
@@ -392,6 +432,8 @@ def superoperator_equivalence(E,F):
 	for i in range(dem):
 		E_trace = E_trace+E[i,i]
 		F_trace = F_trace+F[i,i]
+	E_trace = np.around(E_trace,decimals=2)
+	F_trace = np.around(F_trace,decimals=2)
 	if not E_trace==F_trace:
 		b = False
 	#print("Equivalence result:",b)
