@@ -28,10 +28,10 @@ def reset_qlts():
 
 #First qLTS
 try:
-	#in_1 = input('file 1 name > ')
-	#out_1 = input('output file 1 name > ')
-	in_1 = "examples/concreteBB84-eavesdropper-m.txt"
-	out_1 = "parse_output/concreteBB84-eavesdropper-m.gv"
+	in_1 = input('file 1 name > ')
+	out_1 = input('output file 1 name > ')
+	# in_1 = "examples/concreteBB84.txt"
+	# out_1 = "parse_output/concreteBB84.gv"
 	qlts_1 = qlts.qlts(in_1,out_1)
 	op_1 = qlts.op
 	qLTS_index = len(qlts.qLTS)-1
@@ -52,10 +52,10 @@ except EOFError:
 reset_qlts()
 #Second qLTS
 try:
-	#in_2 = input('file 2 name > ')
-	#out_2 = input('output file 2 name > ')
-	in_2 = "examples/concreteBB84-eavesdropper-spec-m.txt"
-	out_2 = "parse_output/concreteBB84-eavesdropper-spec-m.gv"
+	in_2 = input('file 2 name > ')
+	out_2 = input('output file 2 name > ')
+	# in_2 = "examples/concreteBB84-spec.txt"
+	# out_2 = "parse_output/concreteBB84-spec.gv"
 	qlts_2 = qlts.qlts(in_2,out_2)
 	op_2 = qlts.op
 	qLTS_index = len(qlts.qLTS)-1
