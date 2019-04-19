@@ -3,7 +3,7 @@ A tool for verifying bisimulation of quantum programs.
 
 How to run:
 
-1. Open a Terminal and execute: 
+1. Open a Terminal at the same directory and execute: 
  
 ```
 python bisim_concrete.py
