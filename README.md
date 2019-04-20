@@ -20,3 +20,19 @@ examples/concrete1-2.txt
 
 parse_output/concrete1-2.gv
 ```
+And the result will print in the terminal like:
+
+```
+NonBisim:  []
+
+Bisim:  22
+
+Bisimilar
+
+0.01887989044189453
+```
+
+And the generated pLTSs can be found in folder $parse\_output$ as following:
+
+<img src="parse_output/concrete1-1.gv.pdf" height="1000"/>
+<img src="parse_output/concrete1-2.gv.pdf" height="1000"/>
