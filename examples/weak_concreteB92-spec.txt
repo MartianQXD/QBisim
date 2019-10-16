@@ -1,0 +1,21 @@
+#
+{xKb,xBa,xBb};
+[q1,q2] = [00]
+#
+Outa def keya!xBa.nil;
+Outb def keyb!xBb.nil;
+Outa_empty def keya!e.nil;
+Outb_empty def keyb!e.nil;
+Spec def Set1[q1].M[q1;xBa].Set10[q1].Set1[q2].M[q2;xBb].Set10[q2].Set1[q2].M[q2;xKb].Set10[q2].
+					(if not (xBa=xBb) then 
+						(if xKb=1 then Outa||Outb 
+					   + if xKb=0 then Outa_empty||Outb_empty) 
+				   + if xBa=xBb then Outa_empty||Outb_empty)
+{
+	Set2=[0.5*|00><00|+0.5*|00><01|+0.5*|00><10|+0.5*|00><11|,0.5*|01><00|+0.5*|01><01|+0.5*|01><10|+0.5*|01><11|,0.5*|10><00|+0.5*|10><01|+0.5*|10><10|+0.5*|10><11|,0.5*|11><00|+0.5*|11><01|+0.5*|11><10|+0.5*|11><11|];
+	Set1=[0.707*|0><0|+0.707*|1><0|,0.707*|0><1|+0.707*|1><1|];
+	Set20=[|00><00|,|00><01|,|00><10|,|00><11|];
+	Set10=[|0><0|,|0><1|];
+	Set11=[|1><0|,|1><1|];
+	M=[|0><0|,|1><1|]
+}

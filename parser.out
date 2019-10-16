@@ -41,6 +41,7 @@ Unused terminals:
     Sub
     Superoperator
     THEN
+    XOR
 
 Grammar
 
@@ -114,6 +115,7 @@ Sub                  :
 Superoperator        : 
 THEN                 : 
 TIMES                : 10
+XOR                  : 
 error                : 
 
 Nonterminals, with rules where they appear

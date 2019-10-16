@@ -1,0 +1,7 @@
+// The qLTS Spec
+digraph {
+	node [fontsize=35]
+	edge [fontsize=40]
+	0 -> 1 [label=tau]
+	1 -> 2 [label=1.0]
+}

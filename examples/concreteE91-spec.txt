@@ -1,0 +1,13 @@
+#
+{xKa,xBa,xBb};
+[q1,q2,q3,q4] = [0000]
+#
+Outa def keya!cmp(xKa,xBa,xBb).nil;
+Outb def keyb!cmp(xKa,xBa,xBb).nil;
+Spec def tau.tau.tau.tau.Set1[q2].M[q2;xBa].Set10[q2].Set1[q1].M[q1;xKa].Set10[q1].tau.tau.Set1[q3].M[q3;xBb].Set10[q3].tau.tau.tau.tau.(Outa||Outb)
+{
+    Set1=[0.707*|0><0|+0.707*|1><0|,0.707*|0><1|+0.707*|1><1|];
+	Set10=[|0><0|,|0><1|];
+	Set11=[|1><0|,|1><1|];
+	M=[|0><0|,|1><1|]
+}

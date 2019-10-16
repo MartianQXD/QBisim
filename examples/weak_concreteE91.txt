@@ -1,0 +1,18 @@
+#
+{xKa,xKb,xBa,xBb};
+[q1,q2,q3,q4] = [0000]
+#
+Alice def ca.?q1.Set1[q3].M[q3;xBa].Set10[q3].(if xBa=0 then M[q1;xKa].a2b!xBa.b2a?xBb.keya!cmp(xKa,xBa,xBb).nil
+                                             + if xBa=1 then M2[q1;xKa].a2b!xBa.b2a?xBb.keya!cmp(xKa,xBa,xBb).nil);
+Bob def cb.?q2.Set1[q4].M[q4;xBb].Set10[q4].(if xBb=0 then M[q2;xKb].a2b?xBa.b2a!xBb.keyb!cmp(xKb,xBb,xBa).nil
+                                           + if xBb=1 then M2[q2;xKb].a2b?xBa.b2a!xBb.keyb!cmp(xKb,xBb,xBa).nil);
+EPR def SetPsi[q1,q2].ca.!q1.cb.!q2.nil;
+E91 def (Alice||Bob||EPR)\{ca,cb,a2b,b2a}
+{
+    Set1=[0.707*|0><0|+0.707*|1><0|,0.707*|0><1|+0.707*|1><1|];
+	Set10=[|0><0|,|0><1|];
+	Set11=[|1><0|,|1><1|];
+	SetPsi=[0.707*|00><00|+0.707*|11><00|,0.707*|00><01|+0.707*|11><01|,0.707*|00><10|+0.707*|11><10|,0.707*|00><11|+0.707*|11><11|];
+	M=[|0><0|,|1><1|];
+	M2=[0.5*|0><0|+0.5*|0><1|+0.5*|1><0|+0.5*|1><1|,0.5*|0><0|-0.5*|0><1|-0.5*|1><0|+0.5*|1><1|]
+}

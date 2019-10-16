@@ -1,0 +1,13 @@
+#
+{xKa,xKb,xBa,xBb} = {1,1,1,1};
+[q1] = [0]
+#
+Alice def Set10[q1].(if xKa=0 then Set10[q1].(if xBa=0 then I[q1].A2B.!q1.nil + if xBa=1 then H[q1].A2B.!q1.nil) + if xKa=1 then Set11[q1].(if xBa=0 then I[q1].A2B.!q1.nil + if xBa=1 then H[q1].A2B.!q1.nil));
+Bob def A2B.?q1.Set10[q1].nil;
+BB84 def (Alice||Bob)\{A2B}
+{
+	Set10=[|0><0|,|0><1|];
+	Set11=[|1><0|,|1><1|];
+	I=[|0><0|+|1><1|];
+	H=[0.707*|0><0|+0.707*|0><1|+0.707*|1><0|-0.707*|1><1|]
+}

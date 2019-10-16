@@ -1,6 +1,6 @@
 #
 {x};
-[q,q1,q2] = [100]
+[q,q1,q2] = 0.8660254038*[000] + 0.5000000000*[100]
 #
 Alice(x,q,q1,q2) def ca.?q1.CN[q,q1].H[q].M[q,q1;x].SetPsi[q,q1].e!x.nil;
 Bob(x,q,q1,q2) def cb.?q2.e?x.(if x=0 then sigma0[q2].nil + if x=1 then sigma1[q2].nil + if x=2 then sigma2[q2].nil + if x=3 then sigma3[q2].nil);

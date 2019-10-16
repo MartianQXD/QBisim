@@ -1,0 +1,28 @@
+#
+{xKb,xBa,xBb};
+[q1,q2] = [00]
+#
+Alice def Set1[q1].M[q1;xBa].Set10[q1].(if xBa=0 then Set10[q1].tau.tau.A2B.!q1.b2a?xKb.
+                                            (if xKb=1 then keya!xBa.nil
+                                           + if xKb=0 then keya!e.nil)
+                                      + if xBa=1 then Set10[q1].H[q1].A2B.!q1.b2a?xKb.
+                                            (if xKb=1 then keya!xBa.nil
+                                           + if xKb=0 then keya!e.nil));
+Bob def A2B.?q1.Set1[q2].M[q2;xBb].Set10[q2].tau.tau.tau.tau.tau.(if xBb=0 then M[q1;xKb].b2a!xKb.
+                                                                    (if xKb=1 then keyb!xBb.nil
+                                                                   + if xKb=0 then keyb!e.nil)
+                                                                + if xBb=1 then M2[q1;xKb].b2a!xKb.
+                                                                    (if xKb=1 then keyb!xBb.nil
+                                                                   + if xKb=0 then keyb!e.nil));
+BB84 def (Alice||Bob)\{a2b,b2a,A2B}
+{
+	Set2=[0.5*|00><00|+0.5*|00><01|+0.5*|00><10|+0.5*|00><11|,0.5*|01><00|+0.5*|01><01|+0.5*|01><10|+0.5*|01><11|,0.5*|10><00|+0.5*|10><01|+0.5*|10><10|+0.5*|10><11|,0.5*|11><00|+0.5*|11><01|+0.5*|11><10|+0.5*|11><11|];
+	Set1=[0.707*|0><0|+0.707*|1><0|,0.707*|0><1|+0.707*|1><1|];
+	Set20=[|00><00|,|00><01|,|00><10|,|00><11|];
+	Set10=[|0><0|,|0><1|];
+	Set11=[|1><0|,|1><1|];
+	I=[|0><0|+|1><1|];
+	H=[0.707*|0><0|+0.707*|0><1|+0.707*|1><0|-0.707*|1><1|];
+	M=[|0><0|,|1><1|];
+	M2=[0.5*|0><0|+0.5*|0><1|+0.5*|1><0|+0.5*|1><1|,0.5*|0><0|-0.5*|0><1|-0.5*|1><0|+0.5*|1><1|]
+}

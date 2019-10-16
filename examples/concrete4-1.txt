@@ -1,6 +1,6 @@
 #
 {xm,xn,xo};
-[q,q1,q2,q3] = [1000]
+[q,q1,q2,q3] = 0.866*[0000] + 0.500*[1000]
 #
 Alice def ca.?q1.CN[q,q1].H[q].M[q;xm].M[q1;xn].e!xm.f!xn.nil;
 Bob def cb.?q2.H[q2].M[q2;xo].g!xo.nil;
