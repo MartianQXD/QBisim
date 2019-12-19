@@ -1,8 +1,11 @@
 # QBisim
 A tool for verifying bisimulation of quantum programs.
 
-How to run:
+## Install packages
+1. [z3-slover](https://pypi.org/project/z3-solver/)
+2. [graphiviz](https://pypi.org/project/graphviz/)
 
+## How to run
 1. Open a Terminal at the same directory and execute: 
  
 ```
@@ -49,7 +52,7 @@ And the generated pLTSs can be found in folder "parse_output" as "concrete1-1.gv
 <!--<img src="parse_output/concrete1-1.gv.pdf" height="1000"/>
 <img src="parse_output/concrete1-2.gv.pdf" height="1000"/>-->
 
-#### Input Files and Correspoonding Output Files
+### Input Files and Correspoonding Output Files
 
 ##### For Weak Bisimulation
 Input | Output | Remark
