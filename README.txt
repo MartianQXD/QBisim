@@ -4,6 +4,8 @@ A tool for verifying bisimulation of quantum programs.
 ## Install packages
 1. [z3-slover](https://pypi.org/project/z3-solver/)
 2. [graphiviz](https://pypi.org/project/graphviz/)
+3. [ply](https://pypi.org/project/ply/)
+4. [pandas](https://pypi.org/project/pandas/)
 
 ## How to run
 1. Open a Terminal at the same directory and execute: 
@@ -44,22 +46,22 @@ And the generated pLTSs can be found in folder "parse_output" as "concrete1-1.gv
 
 ##### For Weak Bisimulation
 Input             | Output                       | Remark
-concrete1-1.txt   | weak_concrete1-2.txt
+concrete1-1.txt   | weak_concrete1-2.txt         | Teleportation protocol. Change the initial value of [q,q1,q2] in both files to test each case.
 concrete2-1.txt   | concrete2-2.txt
-concrete3-1.txt   | weak_concrete3-2.txt         | Change the initial value of x in both files to test each case
+concrete3-1.txt   | weak_concrete3-2.txt         | SDC protocol. Change the initial value of x in both files to test each case.
 concrete3-1-m.txt | weak_concrete3-2-m.txt
-concrete4-1.txt   | weak_concrete4-2.txt
+concrete4-1.txt   | weak_concrete4-2.txt         | Secret sharing protocol. Change the initial value of [q,q1,q2,q3] in both files to test each case.
 concreteBB84.txt  | weak_concreteBB84-spec.txt
 concreteB92.txt   | weak_concreteB92-spec.txt
 concreteE91.txt   | weak_concreteE91-spec.txt
 
 ##### For Strong Bisimulation
 Input             | Output                       | Remark
-concrete1-1.txt   | concrete1-2.txt
+concrete1-1.txt   | concrete1-2.txt              | Teleportation protocol. Change the initial value of [q,q1,q2] in both files to test each case.
 concrete2-1.txt   | concrete2-2.txt
-concrete3-1.txt   | concrete3-2.txt              | Change the initial value of x in both files to test each case.
+concrete3-1.txt   | concrete3-2.txt              | SDC protocol. Change the initial value of x in both files to test each case.
 concrete3-1-m.txt | concrete3-2-m.txt
-concrete4-1.txt   | concrete4-2.txt
+concrete4-1.txt   | concrete4-2.txt              | Secret sharing protocol. Change the initial value of [q,q1,q2,q3] in both files to test each case.
 concreteBB84.txt  | concreteBB84-spec.txt
 concreteB92.txt   | concreteB92-spec.txt
 concreteE91.txt   | concreteE91-spec.txt
