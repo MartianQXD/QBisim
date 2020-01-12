@@ -1229,17 +1229,17 @@ def init_qLTS(path_11, path_12, path_21, path_22):
 # print("qLTS Generate in ", time.time() - qlts_timer)
 # Weak_Bisimulation(0,0)
 
-checker = input('[Strong/Weak] > ')
-in_1 = input('file 1 name > ')
-out_1 = input('output file 1 name > ')
-in_2 = input('file 2 name > ')
-out_2 = input('output file 2 name > ')
-init_qLTS(in_1, out_1, in_2, out_2)
-if (checker=='Strong') or (checker=='strong'):
-    Bisimulation(0, 0)
-if (set(checker)==('S','s','T','t','R','r','O','o','N','n','G','g') and len(checker)<8):
-    Bisimulation(0, 0)
-if (checker=='Weak') or (checker=='weak'):
-    Weak_Bisimulation(0,0)
-if (set(checker)==('W','w','E','e','A','a','K','k') and len(checker)<6):
-    Weak_Bisimulation(0,0)
+# checker = input('[Strong/Weak] > ')
+# in_1 = input('file 1 name > ')
+# out_1 = input('output file 1 name > ')
+# in_2 = input('file 2 name > ')
+# out_2 = input('output file 2 name > ')
+# init_qLTS(in_1, out_1, in_2, out_2)
+# if (checker=='Strong') or (checker=='strong'):
+#     Bisimulation(0, 0)
+# if (set(checker)==('S','s','T','t','R','r','O','o','N','n','G','g') and len(checker)<8):
+#     Bisimulation(0, 0)
+# if (checker=='Weak') or (checker=='weak'):
+#     Weak_Bisimulation(0,0)
+# if (set(checker)==('W','w','E','e','A','a','K','k') and len(checker)<6):
+#     Weak_Bisimulation(0,0)

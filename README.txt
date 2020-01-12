@@ -8,9 +8,17 @@ A tool for verifying bisimulation of quantum programs.
 4. [pandas](https://pypi.org/project/pandas/)
 
 ## How to run
+1. Open a Terminal at the same directory and execute:
+  
+    python test_all.py
+
+To see all the result of all examples. (Change the initial value of variables in files to test each case.)
+
+Or
+
 1. Open a Terminal at the same directory and execute: 
 
-    python bisim_concrete.py
+    python test.py
 
 2. Choose the module for checking strong bisimulation or weak bisimulation.
 
