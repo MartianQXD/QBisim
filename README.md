@@ -14,7 +14,13 @@ A tool for verifying bisimulation of quantum programs.
 python test_all.py
 ```
     
-To see all the result of all examples. (Change the initial value of variables in files to test each case.)
+To see the result of all communication protocol examples. (Change the initial value of variables in files to test each case.)
+And
+```
+python test_all_QKD.py
+```
+
+To see the result of all QKD protocol examples. 
 
 #### Or
 1. Open a Terminal at the same directory and execute: 
@@ -71,8 +77,8 @@ Input | Output | Remark
 concrete1-1.txt | weak_concrete1-2.txt | Teleportation protocol. Change the initial value of [q,q1,q2] in both files to test each case.
 concrete2-1.txt | concrete2-2.txt
 concrete3-1.txt | weak_concrete3-2.txt | SDC protocol. Change the initial value of x in both files to test each case
-concrete3-1-m.txt | weak_concrete3-2-m.txt
-concrete4-1.txt | weak_concrete4-2.txt
+concrete3-1-m.txt | weak_concrete3-2-m.txt | SDC protocol (modified). Change the initial value of x in both files to test each case
+concrete4-1.txt | weak_concrete4-2.txt | Secret sharing protocol. Change the initial value of [q,q1,q2,q3] in both files to test each case.
 concreteBB84.txt | weak_concreteBB84-spec.txt
 concreteB92.txt | weak_concreteB92-spec.txt
 concreteE91.txt | weak_concreteE91-spec.txt
@@ -82,9 +88,9 @@ Input | Output | Remark
 -|-|-
 concrete1-1.txt | concrete1-2.txt | Teleportation protocol. Change the initial value of [q,q1,q2] in both files to test each case.
 concrete2-1.txt | concrete2-2.txt
-concrete3-1.txt | concrete3-2.txt | SDC protocol. Change the initial value of x in both files to test each case.
+concrete3-1.txt | concrete3-2.txt | SDC protocol (modified). Change the initial value of x in both files to test each case.
 concrete3-1-m.txt | concrete3-2-m.txt
-concrete4-1.txt | concrete4-2.txt | | Secret sharing protocol. Change the initial value of [q,q1,q2,q3] in both files to test each case.
+concrete4-1.txt | concrete4-2.txt | Secret sharing protocol. Change the initial value of [q,q1,q2,q3] in both files to test each case.
 concreteBB84.txt | concreteBB84-spec.txt
 concreteB92.txt | concreteB92-spec.txt
 concreteE91.txt | concreteE91-spec.txt
