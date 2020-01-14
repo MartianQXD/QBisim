@@ -6,15 +6,42 @@ A tool for verifying bisimulation of quantum programs.
 2. [graphiviz](https://pypi.org/project/graphviz/)
 3. [ply](https://pypi.org/project/ply/)
 4. [pandas](https://pypi.org/project/pandas/)
+5. [numpy](https://pypi.org/project/numpy/)
+6. [scipy](https://pypi.org/project/scipy/)
 
-#### Install Python3.7
-Find Python3.7 package in the "lib".
+#### Offline
+Find .deg/.tar/.zip file of zliblg-dev, python and dependent packages in lib.
 
-    tar xvf Python-3.7.6.tar.xz
+1. Install zliblg-dev. Click the zlib1g-dev_1.2.11.dfsg-0ubuntu2_amd64.deb.
+
+2. Install bzip2.
+
+    tar -zxf  bzip2-1.0.6.tar.gz 
+    cd bzip2-1.0.6  
+    make -f  Makefile-libbz2_so 
+    make && make install
+
+2. Install Python 3.7.
+
+    tar -zxvf Python-3.7.6.tgz
     cd Python-3.7.6
-    sudo ./configure --enable-optimizations
-    sudo make altinstall
-    python3 -V
+    ./configure --prefix=/usr/local/python3.7 --enable-shared
+    make
+    sudo make install
+    sudo rm -r /usr/bin/python3
+    sudo ln -s /usr/local/python3.7/bin/python3 /usr/bin/python3
+    sudo cp -R /usr/local/python3.7/lib/* /usr/lib
+    sudo ln -s /usr/local/python3.7/bin/pip3 /usr/bin/pip
+    cd ..
+
+3. Install numpy
+
+    unzip numpy-1.17.4.zip
+    cd numpy-1.17.4
+    sudo python3 setup.py install
+    cd ..
+
+4. Install others
 
 ## How to run
 1. Open a Terminal at the same directory and execute:
