@@ -5,7 +5,7 @@ from qlts_concrete import tt, ff, tau
 from z3 import And, Or, simplify, BoolRef
 import pprint as pp
 import numpy as np
-import sympy as sp
+# import sympy as sp
 import flow_network as fn
 import gc
 import time
