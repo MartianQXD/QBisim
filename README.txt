@@ -14,15 +14,14 @@ Find .deg/.tar/.zip file of zliblg-dev, python and dependent packages in lib.
 
 1. Install zliblg-dev. Click the zlib1g-dev_1.2.11.dfsg-0ubuntu2_amd64.deb.
 
-2. Install bzip2.
-
+2. Install Python 3.7.
+    
+Install bzip2:
     tar -zxf  bzip2-1.0.6.tar.gz 
     cd bzip2-1.0.6  
     make -f  Makefile-libbz2_so 
     make && make install
-
-3. Install Python 3.7.
-
+Install Python:
     tar -zxvf Python-3.7.6.tgz
     cd Python-3.7.6
     ./configure --prefix=/usr/local/python3.7 --enable-shared
@@ -35,7 +34,7 @@ Find .deg/.tar/.zip file of zliblg-dev, python and dependent packages in lib.
     sudo cp /usr/lib/python3/dist-packages/lsb_release.py /usr/local/python3.7/lib/python3.7
     cd ..
 
-4. Install packages in order
+3. Install packages in order
 wheel:
     tar -zxvf wheel-0.33.6.tar.gz
     cd wheel-0.33.6
@@ -48,6 +47,8 @@ pandas:
     sudo pip install six-1.13.0-py2.py3-none-any.whl
     sudo pip install python_dateutil-2.8.0-py2.py3-none-any.whl
     sudo pip install pandas-0.25.3-cp37-cp37m-manylinux1_x86_64.whl
+scipy:
+    sudo pip install scipy-1.4.1-cp37-cp37m-manylinux1_x86_64.whl
 graphviz:
     sudo pip install pyparsing-2.4.6-py2.py3-none-any.whl
     tar -zxvf pydot3-1.0.9.tar.gz
@@ -55,8 +56,6 @@ graphviz:
     sudo python3 setup.py install
     cd ..
     sudo pip install graphviz-0.13.2-py2.py3-none-any.whl
-scipy:
-    sudo pip install scipy-1.4.1-cp37-cp37m-manylinux1_x86_64.whl
 
 ## How to run
 1. Open a Terminal at the same directory and execute:
@@ -104,7 +103,7 @@ And the result will print in the terminal like:
     Bisimilar
     0.13887596130371094
 
-And the generated pLTSs can be found in folder "parse_output" as "concrete1-1.gv.pdf" and "weak_concrete1-2.gv.pdf".
+And the generated pLTSs can be found in folder "parse_output" as "concrete1-1.gv" and "weak_concrete1-2.gv".(Temporary disabled.)
 
 ## Input Files and Correspoonding Output Files
 
