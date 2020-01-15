@@ -110,6 +110,7 @@ def qlts(inputfile, outputfile):
     # 	i = i+1
     # 保存结果
     # dot.render(outputfile, view=False)
+    print("pLTS size: ", len(snapshot))
 
 
 def tree_print(tree):
