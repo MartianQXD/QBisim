@@ -103,7 +103,7 @@ And the result will print in the terminal like:
     Bisimilar
     0.13887596130371094
 
-And the generated pLTSs can be found in folder "parse_output" as "concrete1-1.gv" and "weak_concrete1-2.gv".(Temporary disabled.)
+And the generated pLTSs can be found in folder "parse_output" as "concrete1-1.gv" and "weak_concrete1-2.gv".
 
 ## Input Files and Correspoonding Output Files
 

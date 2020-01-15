@@ -91,17 +91,17 @@ def qlts(inputfile, outputfile):
     # pprint.pprint(op)
     # pprint.pprint(snapshot)
     # 画图
-    # qLTS_index = len(qLTS)-1
-    # dot = Digraph(comment="The qLTS "+qLTS[qLTS_index][0])
-    # dot.attr('node', fontsize='35')
-    # dot.attr('edge', fontsize='40')
-    # t = transitions[qLTS_index]
-    # for transition in t:
-    #     if len(transition) > 2:
-    #         dot.edge(str(transition[0]), str(
-    #             transition[1]), str(transition[2]))
-    #     else:
-    #         dot.edge(str(transition[0]), str(transition[1]))
+    qLTS_index = len(qLTS)-1
+    dot = Digraph(comment="The qLTS "+qLTS[qLTS_index][0])
+    dot.attr('node', fontsize='35')
+    dot.attr('edge', fontsize='40')
+    t = transitions[qLTS_index]
+    for transition in t:
+        if len(transition) > 2:
+            dot.edge(str(transition[0]), str(
+                transition[1]), str(transition[2]))
+        else:
+            dot.edge(str(transition[0]), str(transition[1]))
     # print(dot.source)
     # s = snapshots[qLTS_index]
     # for i in range(len(s)):
@@ -109,7 +109,7 @@ def qlts(inputfile, outputfile):
     # 	pprint.pprint(s[i])
     # 	i = i+1
     # 保存结果
-    # dot.render(outputfile, view=False)
+    dot.render(outputfile, view=False, format='gv')
     print("pLTS size: ", len(snapshot))
 
 
