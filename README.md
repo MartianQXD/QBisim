@@ -3,7 +3,7 @@ A tool for verifying bisimulation of quantum programs.
 
 ## Install packages
 1. [z3-slover](https://pypi.org/project/z3-solver/)
-2. [graphiviz](https://pypi.org/project/graphviz/)
+2. [graphviz](https://pypi.org/project/graphviz/)
 3. [ply](https://pypi.org/project/ply/)
 4. [pandas](https://pypi.org/project/pandas/)
 

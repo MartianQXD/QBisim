@@ -3,7 +3,7 @@ A tool for verifying bisimulation of quantum programs.
 
 ## Install packages
 1. [z3-slover](https://pypi.org/project/z3-solver/)
-2. [graphiviz](https://pypi.org/project/graphviz/)
+2. [graphviz](https://pypi.org/project/graphviz/)
 3. [ply](https://pypi.org/project/ply/)
 4. [pandas](https://pypi.org/project/pandas/)
 5. [numpy](https://pypi.org/project/numpy/)
@@ -21,7 +21,7 @@ Find .deg/.tar/.zip file of zliblg-dev, python and dependent packages in lib.
     make -f  Makefile-libbz2_so 
     make && make install
 
-2. Install Python 3.7.
+3. Install Python 3.7.
 
     tar -zxvf Python-3.7.6.tgz
     cd Python-3.7.6
@@ -32,16 +32,31 @@ Find .deg/.tar/.zip file of zliblg-dev, python and dependent packages in lib.
     sudo ln -s /usr/local/python3.7/bin/python3 /usr/bin/python3
     sudo cp -R /usr/local/python3.7/lib/* /usr/lib
     sudo ln -s /usr/local/python3.7/bin/pip3 /usr/bin/pip
+    sudo cp /usr/lib/python3/dist-packages/lsb_release.py /usr/local/python3.7/lib/python3.7
     cd ..
 
-3. Install numpy
-
-    unzip numpy-1.17.4.zip
-    cd numpy-1.17.4
+4. Install packages in order
+wheel:
+    tar -zxvf wheel-0.33.6.tar.gz
+    cd wheel-0.33.6
     sudo python3 setup.py install
     cd ..
-
-4. Install others
+numpy:
+    sudo pip install numpy-1.17.4-cp37-cp37m-manylinux1_x86_64.whl
+pandas:
+    sudo pip install pytz-2019.3-py2.py3-none-any.whl
+    sudo pip install six-1.13.0-py2.py3-none-any.whl
+    sudo pip install python_dateutil-2.8.0-py2.py3-none-any.whl
+    sudo pip install pandas-0.25.3-cp37-cp37m-manylinux1_x86_64.whl
+graphviz:
+    sudo pip install pyparsing-2.4.6-py2.py3-none-any.whl
+    tar -zxvf pydot3-1.0.9.tar.gz
+    cd pydot3-1.0.9
+    sudo python3 setup.py install
+    cd ..
+    sudo pip install graphviz-0.13.2-py2.py3-none-any.whl
+scipy:
+    sudo pip install scipy-1.4.1-cp37-cp37m-manylinux1_x86_64.whl
 
 ## How to run
 1. Open a Terminal at the same directory and execute:
