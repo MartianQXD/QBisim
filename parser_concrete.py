@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import ply.yacc as yacc
 from q_ast_concrete import tokens
 
@@ -223,4 +224,4 @@ def p_error(p):
     print("Syntax error at '%s'" % p.value)
 
 
-parser = yacc.yacc(debug=True, debuglog=log)
+parser = yacc.yacc(errorlog=yacc.NullLogger())

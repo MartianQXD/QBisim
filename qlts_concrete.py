@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from q_ast_concrete import lexer
 from parser_concrete import parser
 from info_parser_concrete import info_parser
@@ -109,7 +110,7 @@ def qlts(inputfile, outputfile):
     # 	pprint.pprint(s[i])
     # 	i = i+1
     # 保存结果
-    dot.render(outputfile, view=False, format='gv')
+    dot.render(outputfile, view=False)
     print("pLTS size: ", len(snapshot))
 
 

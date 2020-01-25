@@ -10,70 +10,114 @@ A tool for verifying bisimulation of quantum programs.
 6. [scipy](https://pypi.org/project/scipy/)
 
 #### Offline
-Find .deg/.tar/.zip file of zliblg-dev, python and dependent packages in lib.
+Find .deg/.tar/.zip files in lib. Install packages in order.
+1. numpy:
+Double click to install:
 
-1. Install zliblg-dev. Click the zlib1g-dev_1.2.11.dfsg-0ubuntu2_amd64.deb.
+    libblas3_3.7.1-4ubuntu1_amd64.deb
+    libgfortran4_7.4.0-1ubuntu1_18.04.1_amd64.deb
+    liblapack3_3.7.1-4ubuntu1_amd64.deb
+    python3-numpy_1.13.3-2ubuntu1_amd64.deb
 
-2. Install Python 3.7.
-    
-Install bzip2:
-    tar -zxf  bzip2-1.0.6.tar.gz 
-    cd bzip2-1.0.6  
-    make -f  Makefile-libbz2_so 
-    make && make install
-Install Python:
-    tar -zxvf Python-3.7.6.tgz
-    cd Python-3.7.6
-    ./configure --prefix=/usr/local/python3.7 --enable-shared
-    make
-    sudo make install
-    sudo rm -r /usr/bin/python3
-    sudo ln -s /usr/local/python3.7/bin/python3 /usr/bin/python3
-    sudo cp -R /usr/local/python3.7/lib/* /usr/lib
-    sudo ln -s /usr/local/python3.7/bin/pip3 /usr/bin/pip
-    sudo cp /usr/lib/python3/dist-packages/lsb_release.py /usr/local/python3.7/lib/python3.7
-    cd ..
+2. pandas:
+Double click to install:
 
-3. Install packages in order
-wheel:
-    tar -zxvf wheel-0.33.6.tar.gz
-    cd wheel-0.33.6
-    sudo python3 setup.py install
-    cd ..
-numpy:
-    sudo pip install numpy-1.17.4-cp37-cp37m-manylinux1_x86_64.whl
-pandas:
-    sudo pip install pytz-2019.3-py2.py3-none-any.whl
-    sudo pip install six-1.13.0-py2.py3-none-any.whl
-    sudo pip install python_dateutil-2.8.0-py2.py3-none-any.whl
-    sudo pip install pandas-0.25.3-cp37-cp37m-manylinux1_x86_64.whl
-scipy:
-    sudo pip install scipy-1.4.1-cp37-cp37m-manylinux1_x86_64.whl
-graphviz:
-    sudo pip install pyparsing-2.4.6-py2.py3-none-any.whl
-    tar -zxvf pydot3-1.0.9.tar.gz
-    cd pydot3-1.0.9
-    sudo python3 setup.py install
-    cd ..
-    sudo pip install graphviz-0.13.2-py2.py3-none-any.whl
+    python3-pandas-lib_0.22.0-4_amd64.deb
+    python3-pandas_0.22.0-4_all.deb
+
+3. scipy:
+Double click to install:
+
+    python3-decorator_4.1.2-1_all.deb
+    python3-scipy_0.19.1-2ubuntu1_amd64.deb
+
+4. graphviz:
+Double click to install:
+
+    libann0_1.1.2+doc-6_amd64.deb
+    libcdt5_2.40.1-2_amd64.deb
+    libcgraph6_2.40.1-2_amd64.deb
+    libpathplan4_2.40.1-2_amd64.deb
+    libgts-0.7-5_0.7.6+darcs121130-4_amd64.deb
+    libgvc6_2.40.1-2_amd64.deb
+    libgvpr2_2.40.1-2_amd64.deb
+    liblab-gamut1_2.40.1-2_amd64.deb
+    graphviz_2.40.1-2_amd64.deb
+    python3-graphviz_0.8.4-2_all.deb
+    python3-pyparsing_2.2.0+dfsg1-2_all.deb
+    python3-pydot_1.2.3-1_all.deb
 
 ## How to run
-1. Open a Terminal at the same directory and execute:
+1. Open a Terminal at the QBisim directory and execute test files such as:
   
-    python test_all.py
+    sudo python3 test_all.py
 
-To see the result of all communication protocol examples. (Change the initial value of variables in files to test each case.)
-And
+to see the result of all communication protocol examples.
 
-    python test_all_QKD.py
+Futhermore, use
     
-To see the result of all QKD protocol examples. 
+    sudo python3 -W ignore test_all.py
+
+to ignore the warning from python linear programming function. 
+The warning message from ply (at the beginning of the execution) is print by itself.
+
+The output in the terminal
+
+    Weak Bisimulation Test
+    ===================
+
+means that the experiments start.
+
+Then the result will be shown in the format:
+
+    <Protocol name>
+    pLTS size:  <implementation pLTS size>
+    pLTS size:  <specification pLTS size>
+    pLTS Generate in <total running time of generating two pLTSs>
+    NonBisim:  <size of the set NonBisim>
+    Bisim:  <size of the set Bisim>
+    <wether two pLTSs are weak bisimilar>
+    <running time of checking algorithm>
+    ===================
+
+e.g.
+    Teleportation
+    pLTS size:  34
+    pLTS size:  3
+    pLTS Generate in  0.30704784393310547
+    NonBisim:  22
+    Bisim:  22
+    Weak Bisimilar
+    1.1541142463684082
+    ===================
+
+(The SDC will return two results as a problem of the model is found in the first one and it is corrected in the second.)
+
+And we can change the initial value of variables in files to test each case. 
+For example, 
+    1. Open "/examples/concrete1-1.txt"
+    2. Modify the input qubits from
+        [q,q1,q2] = 0.8660254038*[000] + 0.5000000000*[100]
+       to
+        [q,q1,q2] = [100]
+    3. Run the test file again
+
+Furthermore, we can use
+
+    sudo python3 test_all_QKD.py
+    
+to see the results of all QKD protocol examples.
+
+2. To see the result of strong bisimulation checking. Please run the file with a suffix '_strong'.
+  
+    sudo python3 test_all_strong.py
+    sudo python3 test_all_QKD_strong.py
 
 Or
 
 1. Open a Terminal at the same directory and execute: 
 
-    python test.py
+    sudo python3 test.py
 
 2. Choose the module for checking strong bisimulation or weak bisimulation.
 
@@ -98,10 +142,13 @@ If module for checking strong bisimulation is chosen, while the second file shou
 where the difference is there are several "tau" actions added into the program. (the detail relations between input and output files are shown in the table below)
 And the result will print in the terminal like:
 
-    NonBisim:  []
+    pLTS size:  34
+    pLTS size:  3
+    pLTS Generate in  0.30704784393310547
+    NonBisim:  22
     Bisim:  22
-    Bisimilar
-    0.13887596130371094
+    Weak Bisimilar
+    1.1541142463684082
 
 And the generated pLTSs can be found in folder "parse_output" as "concrete1-1.gv" and "weak_concrete1-2.gv".
 

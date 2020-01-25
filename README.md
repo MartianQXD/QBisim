@@ -6,27 +6,127 @@ A tool for verifying bisimulation of quantum programs.
 2. [graphviz](https://pypi.org/project/graphviz/)
 3. [ply](https://pypi.org/project/ply/)
 4. [pandas](https://pypi.org/project/pandas/)
+5. [numpy](https://pypi.org/project/numpy/)
+6. [scipy](https://pypi.org/project/scipy/)
+
+## Offline
+Find .deg/.tar/.zip files in lib. Install packages in order.
+1. numpy:
+Double click to install:
+
+    libblas3_3.7.1-4ubuntu1_amd64.deb
+    libgfortran4_7.4.0-1ubuntu1_18.04.1_amd64.deb
+    liblapack3_3.7.1-4ubuntu1_amd64.deb
+    python3-numpy_1.13.3-2ubuntu1_amd64.deb
+
+2. pandas:
+Double click to install:
+
+    python3-pandas-lib_0.22.0-4_amd64.deb
+    python3-pandas_0.22.0-4_all.deb
+
+3. scipy:
+Double click to install:
+
+    python3-decorator_4.1.2-1_all.deb
+    python3-scipy_0.19.1-2ubuntu1_amd64.deb
+
+4. graphviz:
+Double click to install:
+
+    libann0_1.1.2+doc-6_amd64.deb
+    libcdt5_2.40.1-2_amd64.deb
+    libcgraph6_2.40.1-2_amd64.deb
+    libpathplan4_2.40.1-2_amd64.deb
+    libgts-0.7-5_0.7.6+darcs121130-4_amd64.deb
+    libgvc6_2.40.1-2_amd64.deb
+    libgvpr2_2.40.1-2_amd64.deb
+    liblab-gamut1_2.40.1-2_amd64.deb
+    graphviz_2.40.1-2_amd64.deb
+    python3-graphviz_0.8.4-2_all.deb
+    python3-pyparsing_2.2.0+dfsg1-2_all.deb
+    python3-pydot_1.2.3-1_all.deb
 
 ## How to run
 1. Open a Terminal at the same directory and execute:
- 
+  
 ```
-python test_all.py
-```
-    
-To see the result of all communication protocol examples. (Change the initial value of variables in files to test each case.)
-And
-```
-python test_all_QKD.py
+sudo python3 test_all.py
 ```
 
-To see the result of all QKD protocol examples. 
+To see the result of all communication protocol examples.
+
+Furthermore, use
+```
+sudo python3 -W ignore test_all.py
+```
+to ignore the warning from python linear programming function. 
+The warning message from ply (at the beginning of the execution) is print by itself.
+
+The output in the terminal
+```
+Weak Bisimulation Test
+===================
+```
+means that the experiments start.
+
+Then the result will be shown in the format:
+```
+<Protocol name>
+pLTS size:  <implementation pLTS size>
+pLTS size:  <specification pLTS size>
+pLTS Generate in <total running time of generating two pLTSs>
+NonBisim:  <size of the set NonBisim>
+Bisim:  <size of the set Bisim>
+<wether two pLTSs are weak bisimilar>
+<running time of checking algorithm>
+===================
+```
+e.g.
+```
+Teleportation
+pLTS size:  34
+pLTS size:  3
+pLTS Generate in  0.30704784393310547
+NonBisim:  22
+Bisim:  22
+Weak Bisimilar
+1.1541142463684082
+===================
+```
+(The SDC will return two results as a problem of the model is found in the first one and it is corrected in the second.)
+
+And we can change the initial value of variables in files to test each case. 
+For example, 
+    1. Open "/examples/concrete1-1.txt"
+    2. Modify the input qubits from
+    ```
+        [q,q1,q2] = 0.8660254038*[000] + 0.5000000000*[100]
+    ```
+       to
+    ```
+        [q,q1,q2] = [100]
+    ```
+    3. Run the test file again
+
+Furthermore, we can use
+```
+sudo python3 test_all_QKD.py
+```
+to see the results of all QKD protocol examples.
+
+2. To see the result of strong bisimulation checking. Please run the file with a suffix '_strong'.
+
+```
+sudo python3 test_all_strong.py
+sudo python3 test_all_QKD_strong.py
+```
 
 #### Or
 1. Open a Terminal at the same directory and execute: 
  
 ```
-python test.py
+sudo python3 test.py
 ```
 2. Choose the module for checking strong bisimulation or weak bisimulation.
 
@@ -55,13 +155,13 @@ where the difference is there are several "tau" actions added into the program.
 And the result will print in the terminal like:
 
 ```
-NonBisim:  []
-
+pLTS size:  34
+pLTS size:  3
+pLTS Generate in  0.30704784393310547
+NonBisim:  22
 Bisim:  22
-
-Bisimilar
-
-0.13887596130371094
+Weak Bisimilar
+1.1541142463684082
 ```
 
 And the generated pLTSs can be found in folder "parse_output" as "concrete1-1.gv.pdf" and "weak_concrete1-2.gv.pdf".

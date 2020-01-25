@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import ply.lex as lex
 
 # Set up a logging object
@@ -438,7 +439,7 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-lexer = lex.lex(debug=True, debuglog=log)
+lexer = lex.lex(errorlog=lex.NullLogger())
 lexer.num_count = 0
 lexer.info_start = 0
 lexer.info_end = 0

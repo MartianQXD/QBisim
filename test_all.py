@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 sys.path.append("lib")
 print(sys.version)
@@ -13,11 +14,6 @@ bisim.init_qLTS("examples/concrete1-1.txt", "parse_output/concrete1-1.gv",
           "examples/weak_concrete1-2.txt", "parse_output/weak_concrete1-2.gv")
 print("pLTS Generate in ", time.time() - qlts_timer)
 bisim.Weak_Bisimulation(0,0)
-# qlts_timer = time.time()
-# init_qLTS("examples/concrete2-1.txt", "parse_output/concrete2-1.gv",
-#           "examples/concrete2-2.txt", "parse_output/concrete2-2.gv")
-# print("pLTS Generate in ", time.time() - qlts_timer)
-# Weak_Bisimulation(0,0)
 print("===================\nSDC")
 qlts_timer = time.time()
 bisim.init_qLTS("examples/concrete3-1.txt", "parse_output/concrete3-1.gv",

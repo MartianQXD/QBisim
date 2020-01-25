@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import graphviz
 import copy
 from graphviz import Digraph
@@ -300,7 +301,7 @@ def solve_lp(network_edges,network_vertexes,distribution,s,t,n_e,n_v):
       f_bound = (0,None)
       bounds = (f_bound,)*eNum
       # linear programming
-      res = opt.linprog(c,A_eq=A,b_eq=b,bounds=bounds,options={"disp":False})
+      res = opt.linprog(c,A_eq=A,b_eq=b,bounds=bounds,options={'disp':False})
       return res
 
 # @param graph        Transition system.

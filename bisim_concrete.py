@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # import sys
 # print(sys.path)
 import qlts_concrete as qlts
@@ -73,9 +74,14 @@ Bisim = []
 Assumed = []
 
 # If the assumption is wrong, do the Bis() again with updated NonBisim and Bisim sets
-
-
 class WrongAssumptionError(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+
+    def __str__(self):
+        return self.msg
+
+class DifferentDepthException(Exception):
     def __init__(self, msg):
         self.msg = msg
 
@@ -94,13 +100,15 @@ def Bisimulation(t, u):
     except WrongAssumptionError as e:
         print(e)
         res = Bis(t, u)
+    except DifferentDepthException as e:
+        print(e)
     finally:
         # print("//Check Bisimulation\nResult: ", res[0])
         if len(NonBisim) > 10:
             print("NonBisim: ", len(NonBisim))
         else:
             print("NonBisim: ", NonBisim)
-        if len(Bisim) > 100:
+        if len(Bisim) > 10:
             print("Bisim: ", len(Bisim))
         else:
             print("Bisim: ", Bisim)
@@ -442,10 +450,9 @@ def get_act(t, u):
     u_count = [transition for transition in transitions_2 if transition[0] == u]
     # print(t_count,u_count)
     if (len(t_count) == 0 and len(u_count) != 0) or (len(t_count) != 0 and len(u_count) == 0):
-        print("Different Depth. Not Bisimilar.")
         cost_time = time.time() - timer
         print(cost_time)
-        exit(0)
+        raise DifferentDepthException("Different Depth. Not Bisimilar.")
     for transition in transitions_1:
         for another_transition in transitions_2:
             # Cooperate with the code in MatchAction() to avoid the matching cause the by silent actions
