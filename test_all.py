@@ -10,24 +10,25 @@ import time
 print("Weak Bisimulation Test")
 print("===================\nTeleportation")
 qlts_timer = time.time()
-bisim.init_qLTS("examples/concrete1-1.txt", "parse_output/concrete1-1.gv",
-          "examples/weak_concrete1-2.txt", "parse_output/weak_concrete1-2.gv")
+bisim.init_qLTS("examples/concrete-tele.txt", "parse_output/concrete-tele.gv",
+          "examples/weak_concrete-tele-spec.txt", "parse_output/weak_concrete-tele-spec.gv")
 print("pLTS Generate in ", time.time() - qlts_timer)
 bisim.Weak_Bisimulation(0,0)
-print("===================\nSDC")
+print("===================\nSDC, x=1")
 qlts_timer = time.time()
-bisim.init_qLTS("examples/concrete3-1.txt", "parse_output/concrete3-1.gv",
-          "examples/weak_concrete3-2.txt", "parse_output/weak_concrete3-2.gv")
+bisim.init_qLTS("examples/concrete-sdc.txt", "parse_output/concrete-sdc.gv",
+          "examples/weak_concrete-sdc-spec.txt", "parse_output/weak_concrete-sdc-spec.gv")
 print("pLTS Generate in ", time.time() - qlts_timer)
 bisim.Weak_Bisimulation(0,0)
+print("===================\nSDC modified, x=5")
 qlts_timer = time.time()
-bisim.init_qLTS("examples/weak_concrete3-1-m.txt", "parse_output/weak_concrete3-1-m.gv",
-          "examples/weak_concrete3-2-m.txt", "parse_output/weak_concrete3-2-m.gv")
+bisim.init_qLTS("examples/weak_concrete-sdc-m.txt", "parse_output/weak_concrete-sdc-m.gv",
+          "examples/weak_concrete-sdc-spec-m.txt", "parse_output/weak_concrete-sdc-spec-m.gv")
 print("pLTS Generate in ", time.time() - qlts_timer)
 bisim.Weak_Bisimulation(0,0)
 print("===================\nSecret Sharing")
 qlts_timer = time.time()
-bisim.init_qLTS("examples/concrete4-1.txt", "parse_output/concrete4-1.gv",
-          "examples/weak_concrete4-2.txt", "parse_output/weak_concrete4-2.gv")
+bisim.init_qLTS("examples/concrete-ss.txt", "parse_output/concrete-ss.gv",
+          "examples/weak_concrete-ss-spec.txt", "parse_output/weak_concrete-ss-spec.gv")
 print("pLTS Generate in ", time.time() - qlts_timer)
 bisim.Weak_Bisimulation(0,0)

@@ -22,13 +22,13 @@ print("pLTS Generate in ", time.time() - qlts_timer)
 bisim.Bisimulation(0, 0)
 print("===================\nB92")
 qlts_timer = time.time()
-bisim.bisim.init_qLTS("examples/concreteB92.txt", "parse_output/concreteB92.gv",
+bisim.init_qLTS("examples/concreteB92.txt", "parse_output/concreteB92.gv",
           "examples/concreteB92-spec.txt", "parse_output/concreteB92-spec.gv")
 print("pLTS Generate in ", time.time() - qlts_timer)
 bisim.Bisimulation(0, 0)
 print("===================\nE91")
 qlts_timer = time.time()
-bisim.init_qLTS("examples/concreteEPR.txt", "parse_output/concreteEPR.gv",
-          "examples/concreteEPR-spec.txt", "parse_output/concreteEPR-spec.gv")
+bisim.init_qLTS("examples/concreteE91.txt", "parse_output/concreteE91.gv",
+          "examples/concreteE91-spec.txt", "parse_output/concreteE91-spec.gv")
 print("pLTS Generate in ", time.time() - qlts_timer)
 bisim.Bisimulation(0, 0)

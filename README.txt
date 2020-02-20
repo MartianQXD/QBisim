@@ -155,27 +155,29 @@ And the generated pLTSs can be found in folder "parse_output" as "concrete1-1.gv
 ## Input Files and Correspoonding Output Files
 
 ##### For Weak Bisimulation
-Input             | Output                       | Remark
-concrete1-1.txt   | weak_concrete1-2.txt         | Teleportation protocol. Change the initial value of [q,q1,q2] in both files to test each case.
-concrete2-1.txt   | concrete2-2.txt
-concrete3-1.txt   | weak_concrete3-2.txt         | SDC protocol. Change the initial value of x in both files to test each case.
-concrete3-1-m.txt | weak_concrete3-2-m.txt       | SDC protocol (modified). Change the initial value of x in both files to test each case.
-concrete4-1.txt   | weak_concrete4-2.txt         | Secret sharing protocol. Change the initial value of [q,q1,q2,q3] in both files to test each case.
-concreteBB84.txt  | weak_concreteBB84-spec.txt
-concreteB92.txt   | weak_concreteB92-spec.txt
-concreteE91.txt   | weak_concreteE91-spec.txt
+Input                   | Output                        | Remark
+concrete-basic.txt      | concrete-basic-spec.txt
+concrete-sdc.txt        | weak_concrete-sdc-spec.txt    | SDC protocol. Change the initial value of x in both files to test each case.
+weak_concrete-sdc-m.txt | weak_concrete-sdc-spec-m.txt  | SDC protocol (modified). Change the initial value of x in both files to test each case.
+concrete-tele.txt       | weak_concrete-tele-spec.txt   | Teleportation protocol. Change the initial value of [q,q1,q2] in both files to test each case.
+concrete-ss.txt         | weak_concrete-ss-spec.txt     | Secret sharing protocol. Change the initial value of [q,q1,q2,q3] in both files to test each case.
+concreteBB84.txt        | weak_concreteBB84-spec.txt
+concreteB92.txt         | weak_concreteB92-spec.txt
+concreteE91.txt         | weak_concreteE91-spec.txt
+concreteBB84-           | weak_concreteBB84-            | Around 15 hours.
+eavesdropper-m.txt      | eavesdropper-spec-m.txt                   | 
 
 ##### For Strong Bisimulation
-Input             | Output                       | Remark
-concrete1-1.txt   | concrete1-2.txt              | Teleportation protocol. Change the initial value of [q,q1,q2] in both files to test each case.
-concrete2-1.txt   | concrete2-2.txt
-concrete3-1.txt   | concrete3-2.txt              | SDC protocol. Change the initial value of x in both files to test each case.
-concrete3-1-m.txt | concrete3-2-m.txt            | SDC protocol (modified). Change the initial value of x in both files to test each case.
-concrete4-1.txt   | concrete4-2.txt              | Secret sharing protocol. Change the initial value of [q,q1,q2,q3] in both files to test each case.
-concreteBB84.txt  | concreteBB84-spec.txt
-concreteB92.txt   | concreteB92-spec.txt
-concreteE91.txt   | concreteE91-spec.txt
-concreteBB84-     | concreteBB84-eavesdropper    | Terminate in a early time-point reuslting Not Bisimilar.
-eavesdropper.txt  | -spec.txt                    | 
-concreteBB84-     | concreteBB84-eavesdropper    | Around 1 hour.
-eavesdropper-m.txt| -spec-m.txt                  | 
+Input                   | Output                        | Remark
+concrete-basic.txt      | concrete-basic-spec.txt
+concrete-sdc.txt        | concrete-sdc-spec.txt         | SDC protocol. Change the initial value of x in both files to test each case.
+concrete-sdc-m.txt      | concrete-sdc-spec-m.txt       | SDC protocol (modified). Change the initial value of x in both files to test each case.
+concrete-tele.txt       | concrete-tele-spec.txt        | Teleportation protocol. Change the initial value of [q,q1,q2] in both files to test each case.
+concrete-ss.txt         | concrete-ss-spec.txt          | Secret sharing protocol. Change the initial value of [q,q1,q2,q3] in both files to test each case.
+concreteBB84.txt        | concreteBB84-spec.txt
+concreteB92.txt         | concreteB92-spec.txt
+concreteE91.txt         | concreteE91-spec.txt
+concreteBB84-           | concreteBB84-eavesdropper     | Terminate in a early time-point reuslting Not Bisimilar.
+eavesdropper.txt        | -spec.txt                     | 
+concreteBB84-           | concreteBB84-eavesdropper     | Around 1 hour.
+eavesdropper-m.txt      | -spec-m.txt                   | 
